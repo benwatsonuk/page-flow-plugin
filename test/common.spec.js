@@ -1,6 +1,6 @@
 const expect = require('chai').expect
 
-const common = require('../functions/common')
+const common = require('../app/functions/common')
 const pages = require('./data/pages')
 const userFlow = require('./data/user-flows')
 const outputs = require('./data/outputs')

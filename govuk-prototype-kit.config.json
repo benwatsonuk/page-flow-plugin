@@ -1,15 +1,12 @@
 {
-  "nunjucksPaths": [
-    "/app/"
-  ],
   "scripts": [
-    "/app/all.js"
+    "/app/assets/all.js"
   ],
   "assets": [
     "/app/assets"
   ],
   "sass": [
-    "/app/all.scss"
+    "/app/assets/all.scss"
   ],
   "templates": [
     {

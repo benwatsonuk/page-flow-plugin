@@ -42,31 +42,25 @@
     display: block;
     //padding: 5px;
   }
-  &--security-layer {
-    border-color: $stage-color--security-layer;
+  &--1 {
+    border-color: $stage-color--1;
   }
-  &--stay-writ {
-    border-color: $stage-color--stay-writ;
+  &--2 {
+    border-color: $stage-color--2;
   }
-  &--defendant-dashboard {
-    border-color: $stage-color--defendant-dashboard;
+  &--3 {
+    border-color: $stage-color--3;
   }
-  &--claimant-dashboard {
-    border-color: $stage-color--defendant-dashboard;
+  &--4 {
+    border-color: $stage-color--4;
   }
-  &--check-writ {
-    border-color: $stage-color--check-writ;
-  }
-  &--enforcement-selection {
-    border-color: $stage-color--enforcement-selection;
-  }
-  &--writs {
-    border-color: $stage-color--writs;
+  &--authentication {
+    border-color: $stage-color--authentication;
   }
   &--documents {
     border-color: $stage-color--documents;
   }
-  &--notifications-defendant, &--notifications-claimant {
+  &--notifications, &--notifications {
     border-color: $stage-color--notifications;
   }
   &:last-of-type {
