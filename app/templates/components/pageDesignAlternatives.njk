@@ -1,0 +1,21 @@
+{% macro pageDesignAlternatives(thePageInfo) %}
+    {% if thePageInfo.thisPage.altDesigns %}
+        <details class="govuk-details">
+            <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                        Design alternatives: {{ thePageInfo.thisPage.altDesigns.length }}
+                        </span>
+            </summary>
+            <div class="govuk-details__text">
+                {% for version in thePageInfo.thisPage.altDesigns %}
+                    <p><a href="/{{ thePageInfo.location + '?' + version['queryString'] }}"
+                          target="_blank">{{ version['description'] }}</a></p>
+                {% endfor %}
+            </div>
+        </details>
+    {% else %}
+
+        {#        No alternative designs#}
+
+    {% endif %}
+{% endmacro %}

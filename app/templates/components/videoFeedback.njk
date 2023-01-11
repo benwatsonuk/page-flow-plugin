@@ -1,0 +1,9 @@
+{% if thePageInfo.theStageUR.feedback %}
+
+    {% for feedbackType, feedback in thePageInfo.theStageUR.feedback %}
+        {% if feedbackType === 'video' and feedback !== '' %}
+            <a href="{{ feedback }}" target="_blank">View user feedback video</a>
+        {% endif %}
+    {% endfor %}
+
+{% endif %}

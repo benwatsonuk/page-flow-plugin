@@ -1,0 +1,9 @@
+{% macro pageDescription(thePageInfo) %}
+
+<h2 class="govuk-heading-m">
+    {{ thePageInfo.thisPage.title }}
+</h2>
+
+<p>{{ thePageInfo.thisPage.description }}</p>
+
+{% endmacro %}

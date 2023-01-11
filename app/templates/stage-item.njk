@@ -1,0 +1,22 @@
+{% macro stageItem(params) %}
+    <li class="page-flow-item--stage page-flow-item--stage--{{ params.stage.id }}">
+
+        <span class="page-flow-stage-descriptor govuk-header">{{ params.name }}</span>
+
+        <p>{{ params.description }}</p>
+
+        {%- if params.stage.versions[0] %}
+            <ol class="page-flow--pages">
+                {% for page in params.stage.versions[0].pages %}
+                    {% from "page-item.njk" import pageItem %}
+                    {{ pageItem({
+                        page: page,
+                        location: params.stage.versions[0].location,
+                        version: params.stage.versions[0].versionDirectory
+                    }) }}
+                {% endfor %}
+            </ol>
+        {% endif -%}
+
+    </li>
+{% endmacro %}

@@ -1,0 +1,15 @@
+<ol class="page-flow--stages">
+
+    {% for stage in pages.stages %}
+        {% from "stage-item.njk" import stageItem %}
+        {{ stageItem({
+            stage: stage,
+            sprint: stage.sprint,
+            name: stage.name,
+            description: stage.description,
+            pages: stage.pages
+        }) }}
+
+    {% endfor %}
+
+</ol>

@@ -1,0 +1,7 @@
+{% macro iframe(thePageInfo) %}
+
+<div class="screenPreviewContainer govuk-!-margin-bottom-5">
+    <iframe src="/{{ thePageInfo.location }}" class="screenPreview" frameborder="0"></iframe>
+</div>
+
+{% endmacro %}

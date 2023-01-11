@@ -1,0 +1,40 @@
+<h2 class="govuk-heading-s">User research notes</h2>
+
+{% if theStageUR.feedback %}
+    {% from "details/macro.njk" import govukDetails %}
+    <details class="govuk-details">
+        <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                            Page feedback
+                        </span>
+        </summary>
+        <div class="govuk-details__text">
+            {% for feedbackType, feedback in thePageInfo.theStageUR.feedback %}
+                {% if feedbackType === 'video' and feedback !== '' %}
+                    <a href="{{ feedback }}" target="_blank">Video</a>
+                {% else %}
+                    <p class="page-flow-feedback--{{ feedbackType }}">{{ feedback }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </details>
+
+{% endif %}
+
+        {% if thePageInfo.theStageUR.participant.length %}
+            {% from "details/macro.njk" import govukDetails %}
+            <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                            Participant comments
+                        </span>
+                </summary>
+                <div class="govuk-details__text">
+                    {% for feedback in thePageInfo.theStageUR.participant %}
+                        {% if feedback is not loop.first %}
+                            <p>Participant {{ loop.index0 }} - {{ feedback }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </details>
+        {% endif %}
