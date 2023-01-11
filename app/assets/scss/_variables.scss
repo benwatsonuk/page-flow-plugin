@@ -1,0 +1,13 @@
+// Assets - these can all be overridden
+$page-flow-assets: '../';
+$icons: $page-flow-assets + '/images/page-flow/page-types';
+
+// Stock colours for stages
+$stage-color--1: #006c56;
+$stage-color--2: #00beb7;
+$stage-color--3: pink;
+$stage-color--4: #f47738;
+$stage-color--5: #ccc;
+$stage-color--6: #005ea5;
+$stage-color--7: #004432;
+$stage-color--8: orange;

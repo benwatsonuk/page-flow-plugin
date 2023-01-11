@@ -1,0 +1,21 @@
+{
+  "nunjucksPaths": [
+    "/app/"
+  ],
+  "scripts": [
+    "/app/all.js"
+  ],
+  "assets": [
+    "/app/assets"
+  ],
+  "sass": [
+    "/app/all.scss"
+  ],
+  "templates": [
+    {
+      "name": "Page Flow Wizard",
+      "path": "/app/views/template.njk",
+      "type": "nunjucks"
+    }
+  ]
+}
