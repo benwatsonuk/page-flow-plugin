@@ -155,7 +155,7 @@
     &:before {
       content: "";
       position: absolute;
-      background: url('../images/page-flow/arrow.svg') no-repeat;
+      background: url($page-flow-images + '/arrow.svg') no-repeat;
       background-size: contain;
       width: 78px;
       left: 92px;

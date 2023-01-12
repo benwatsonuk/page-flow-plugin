@@ -1,6 +1,7 @@
 // Assets - these can all be overridden
-$page-flow-assets: '../';
-$icons: $page-flow-assets + 'images/page-types';
+$page-flow-assets: '/extension-assets/page-flow-plugin/app/assets/';
+$page-flow-images: $page-flow-assets + 'images/';
+$icons: $page-flow-images + 'page-types';
 
 // Stock colours for stages
 $stage-color--1: #006c56;
