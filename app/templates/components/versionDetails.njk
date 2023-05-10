@@ -1,0 +1,30 @@
+<details class="govuk-details">
+    <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                            Sprint details
+                        </span>
+    </summary>
+    <div class="govuk-details__text">
+        <h3 class="govuk-heading-m">High level feedback</h3>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+                <ol class="govuk-list--number govuk-list page-flow-feedback--positive">
+                    {% for feedback in sprintDetails.highLevelFeedback.positive %}
+                        <li>{{ feedback }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <div class="govuk-grid-column-one-half">
+                <ol class="govuk-list--number govuk-list page-flow-feedback--negative">
+                    {% for feedback in sprintDetails.highLevelFeedback.negative %}
+                        <li>{{ feedback }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        <h3 class="govuk-heading-s">Tested with</h3>
+        {% for tested in sprintDetails.urDetails %}
+            <p>{{ tested.who }} - {{ tested.where }}</p>
+        {% endfor %}
+    </div>
+</details>

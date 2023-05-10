@@ -1,0 +1,35 @@
+<div class="govuk-grid-row" id="page-flow">
+    <div class="govuk-grid-column-two-thirds">
+        {# breadcrumbs #}
+
+        {# pageDescription #}
+        {% from "components/pageDescription.njk" import pageDescription %}
+        {{ pageDescription(thePageInfo) }}
+
+        {# iframe #}
+        {% from "components/iframe.njk" import iframe %}
+        {{ iframe(thePageInfo) }}
+
+        {# User needs #}
+
+        {# User research #}
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+        {% from "components/pageNav.njk" import pageNav %}
+        {{ pageNav(thePageInfo.navigation) }}
+
+        {% from "components/viewFullPageButton.njk" import viewFullPageButton %}
+        {{ viewFullPageButton(thePageInfo.location) }}
+
+        {% from "components/pageHistory.njk" import pageHistory %}
+        {{ pageHistory(thePageInfo) }}
+
+        {% from "components/pageDesignAlternatives.njk" import pageDesignAlternatives %}
+        {{ pageDesignAlternatives(thePageInfo) }}
+
+        {# videoFeedback #}
+
+    </div>
+
+</div>

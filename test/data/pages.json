@@ -1,0 +1,113 @@
+{
+  "stages": [
+    {
+      "name": "Example 1",
+      "location": "example1",
+      "id": "example1",
+      "description": "",
+      "versions": [
+        {
+          "version": 0,
+          "versionDirectory": "v0",
+          "location": "example1",
+          "users": [
+            "individual"
+          ],
+          "design-notes": "",
+          "pages": [
+            {
+              "title": "Page 1",
+              "id": "1",
+              "userNeeds": [
+              ],
+              "description": "Page 1",
+              "type": "checkbox-input",
+              "location": "example1"
+            },
+            {
+              "title": "Page 2",
+              "id": "2",
+              "userNeeds": [
+              ],
+              "description": "Page 2",
+              "type": "text-input",
+              "location": "example2"
+            },
+            {
+              "title": "Page 3",
+              "id": "3",
+              "altDesigns": [
+                {
+                  "queryString": "showAltAddress=true",
+                  "description": "Address formatted as one line to reduce visual significance afforded to it"
+                }
+              ],
+              "userNeeds": [
+              ],
+              "description": "Page 3",
+              "type": "confirmation",
+              "location": "example3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Example2",
+      "location": "example2",
+      "id": "example2",
+      "description": "Example 2",
+      "versions": [
+        {
+          "version": 0,
+          "versionDirectory": "v0",
+          "location": "example2",
+          "users": [
+            "individual"
+          ],
+          "design-notes": "",
+          "pages": [
+            {
+              "title": "Page 1",
+              "id": "1",
+              "userNeeds": [
+              ],
+              "description": "Page 1",
+              "type": "text-input",
+              "location": "example1"
+            }
+          ]
+        },
+        {
+          "version": 1,
+          "versionDirectory": "v1",
+          "location": "example2",
+          "users": [
+            "individual"
+          ],
+          "design-notes": "Example 2 with a slight tweak",
+          "pages": [
+            {
+              "title": "Page 1",
+              "id": "1",
+              "altDesigns": [
+                {
+                  "queryString": "showAltAddress=true",
+                  "description": "Address formatted as one line to reduce visual significance afforded to it"
+                }
+              ],
+              "changeLog": [
+                "CX-570"
+              ],
+              "userNeeds": [
+              ],
+              "description": "Page 1 with a slight tweak to content",
+              "type": "text-input",
+              "location": "example1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
