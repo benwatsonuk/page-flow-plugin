@@ -1,7 +1,8 @@
 {% macro pageItem(params) %}
+{#    {{ params | dump }}#}
 
     <li class="page-flow-item--page">
-        <a href="/{{ params.phase }}/{{ params.version }}/{{ params.stage.location }}/{{ params.page.location }}" data-url="/{{ params.phase }}{{ params.version }}{{ params.version }}{{ params.stage.location }}{{ params.page.location }}" target="_blank"
+        <a href="/{{ params.prefix }}/{{ params.stage.location }}/{{ params.page.location }}" data-url="/{{ params.phase }}{{ params.version }}{{ params.version }}{{ params.stage.location }}{{ params.page.location }}" target="_blank"
            class="page-flow-item-screen-icon page-flow-item-screen-icon--{{ params.page.type }}"></a>
         {{ params.page.title }}
     </li>
