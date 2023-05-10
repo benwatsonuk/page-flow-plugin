@@ -2,7 +2,7 @@
   "name": "page-flow-plugin",
   "author": "BenWatsonUK",
   "description": "A plugin to visualise the pages of a prototype with a linear user journey",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "./app/index.js",
   "scripts": {
     "test": "mocha"

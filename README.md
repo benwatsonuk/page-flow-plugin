@@ -56,3 +56,7 @@ This is used to generate visual user flows and provide greater detail to the pag
 
 ### Styling 
 
+## Changelog
+
+- v2.0.0 : Potentially breaking changes, uses phases and sprints and an updated series of references
+
