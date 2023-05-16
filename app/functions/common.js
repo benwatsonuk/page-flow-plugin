@@ -85,10 +85,11 @@ common.getPageBeforeUserFlow = function (theUserFlow, userIndex, currentIndex, p
     let theArray = theUserFlow['journeys'][userIndex]['flow']
     if (theArray[(currentIndex - 1)]) {
         let stageVersion = theArray[(currentIndex - 1)]['version']
+        let pageLocation = theArray[currentIndex - 1].location
         let thePageInfo = common.getPageInfoWithStageId(theArray[(currentIndex - 1)]['pageId'], theArray[(currentIndex - 1)]['stage'], stageVersion, pageFlow)
-        let theLink = thePageInfo.stageInfo['location'] + '/' + thePageInfo.location
+        let theLink = thePageInfo.stageInfo['location'] + '/' + pageLocation
         if (thePageInfo['subDir']) {
-            theLink = thePageInfo.stageInfo['location'] + '/' + thePageInfo['subDir'] + '/' + thePageInfo.location
+            theLink = thePageInfo.stageInfo['location'] + '/' + thePageInfo['subDir'] + '/' + pageLocation
         }
         return {
             link: theLink,
@@ -99,15 +100,16 @@ common.getPageBeforeUserFlow = function (theUserFlow, userIndex, currentIndex, p
     }
 }
 
-common.getPageAfterUserFlow = function (theUserFlow, userIndex, currentIndex, pageFlow) {
+common.getPageAfterUserFlow = function (theUserFlow, userIndex, currentIndex, pageFlow, pageLocation) {
     currentIndex = parseInt(currentIndex)
     let theArray = theUserFlow['journeys'][userIndex]['flow']
     if (theArray[(currentIndex + 1)]) {
         let stageVersion = theArray[(currentIndex + 1)]['version']
         let thePageInfo = common.getPageInfoWithStageId(theArray[(currentIndex + 1)]['pageId'], theArray[(currentIndex + 1)]['stage'], stageVersion, pageFlow)
-        let theLink = thePageInfo.stageInfo['location'] + '/' + thePageInfo.location
+        let pageLocation = theArray[currentIndex + 1].location
+        let theLink = thePageInfo.stageInfo['location'] + '/' + pageLocation
         if (thePageInfo['subDir']) {
-            theLink = thePageInfo.stageInfo['location'] + '/' + thePageInfo['subDir'] + '/' + thePageInfo.location
+            theLink = thePageInfo.stageInfo['location'] + '/' + thePageInfo['subDir'] + '/' + pageLocation
         }
         return {
             link: theLink,
@@ -245,7 +247,7 @@ common.getPageInfoWithStageId = function (thePageId, theStageId, stageVersion, p
     let stageVersionIndex = common.findIndex(stageVersion, 'version', pageFlow.stages[thisStageIndex]['versions'])
     let thisStage = pageFlow['stages'][thisStageIndex]['versions'][stageVersionIndex]
     let thisStageInfo = {
-        'location': thisStage['location'],
+        'location': pageFlow['stages'][thisStageIndex]['location'],
         'name': pageFlow['stages'][thisStageIndex]['name']
     }
     let thisStagePages = thisStage['pages']
@@ -285,7 +287,7 @@ common.getUserNeedsForPage = function (theNeeds, allNeeds) {
     return needs
 }
 
-common.getNavigationForUserFlow = function (userFlow, flowType, id, thisPage, thisStage, thisPageIndex, theStagePages, thisStageIndex, version, pageFlow) {
+common.getNavigationForUserFlow = function (prefix, userFlow, flowType, id, thisPage, thisStage, thisPageIndex, theStagePages, thisStageIndex, version, pageFlow) {
     let navigation
     if (flowType === 'page-flow') {
         navigation = {
@@ -293,13 +295,15 @@ common.getNavigationForUserFlow = function (userFlow, flowType, id, thisPage, th
             'next': common.getPageAfter(pageFlow, thisPageIndex, theStagePages, thisStageIndex, version)
         }
     } else {
-        let next = common.getPageAfterUserFlow(userFlow, common.findIndex(id, 'id', userFlow.journeys), common.getIndexInUserFlow(id, thisPage['id'], thisStage['id'], userFlow), pageFlow)
+        const userFlowIndex = common.getIndexInUserFlow(id, thisPage['id'], thisStage['id'], userFlow)
+        const idIndex = common.findIndex(id, 'id', userFlow.journeys)
+        let next = common.getPageAfterUserFlow(userFlow, idIndex, userFlowIndex, pageFlow) //need to add location path here
         if (next !== false) {
-            next['link'] = '/' + version + '/user-flow/' + id + '/' + next.link
+            next['link'] = '/' + prefix + '/page-flow/' + id + '/' + next.link
         }
-        let prev = common.getPageBeforeUserFlow(userFlow, common.findIndex(id, 'id', userFlow.journeys), common.getIndexInUserFlow(id, thisPage['id'], thisStage['id'], userFlow), pageFlow)
+        let prev = common.getPageBeforeUserFlow(userFlow, idIndex, userFlowIndex, pageFlow)
         if (prev['link'] !== false) {
-            prev['link'] = '/' + version + '/user-flow/' + id + '/' + prev.link
+            prev['link'] = '/' + prefix + '/page-flow/' + id + '/' + prev.link
         }
         navigation = {
             'prev': prev,
@@ -323,10 +327,10 @@ common.handleQueryString = function (query) {
             i++
         }
     }
-    return theQueryString
+    return encodeURI(theQueryString)
 }
 
-common.getPageInfoForUserFlow = function (pageFlow, userFlow, page, stage, version, journeyId, subStage = false, query = false) {
+common.getPageInfoForUserFlow = function (prefix, pageFlow, userFlow, page, stage, version, journeyId, subStage = false, query = false) {
     const theQueryString = common.handleQueryString(query)
     const flowType = 'user-flow'
     let thePageName = page + theQueryString
@@ -345,13 +349,13 @@ common.getPageInfoForUserFlow = function (pageFlow, userFlow, page, stage, versi
     let theStageId = thisStage.id
     let journeyIndex = common.findIndex(journeyId, 'id', userFlow['journeys'])
     let versionToUse = userFlow['journeys'][journeyIndex]['flow'][common.findIndexUsing2Keys(thePageName, 'location', theStageId, 'stage', userFlow['journeys'][journeyIndex]['flow'])]['version']
-    let theStageVersion = common.findIndex(versionToUse, 'version', thisStage.versions)
+    let theStageVersion = 0; //common.findIndex(versionToUse, 'version', thisStage.versions)
     let theStagePages = thisStage.versions[theStageVersion]['pages']
     let thisPageIndex = common.findIndex(thePageName, 'location', theStagePages)
     let thisPage = theStagePages[thisPageIndex]
 
-    let navigation = common.getNavigationForUserFlow(userFlow, flowType, journeyId, thisPage, thisStage, thisPageIndex, theStagePages, thisStageIndex, version, pageFlow)
-    let theLocation = version + '/' + thisStage.location + '/' + thisPage.location
+    let navigation = common.getNavigationForUserFlow(prefix, userFlow, flowType, journeyId, thisPage, thisStage, thisPageIndex, theStagePages, thisStageIndex, version, pageFlow)
+    let theLocation = prefix + '/' + thisStage.location + '/' + thisPage.location
     if (subStage !== false) {
         let theStageKey = stage + '/' + subStage
         thisStageIndex = common.findIndex(theStageKey, 'location', pageFlow.stages)

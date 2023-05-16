@@ -1,5 +1,6 @@
 <ol class="page-flow--stages">
-{#    {{ pages | dump }}#}
+    {#    {{ pages | dump }} #}
+
     {% for stage in pages.stages %}
         {% from "stage-item.njk" import stageItem %}
         {{ stageItem({
