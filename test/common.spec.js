@@ -58,8 +58,9 @@ describe('Common', () => {
     });
     describe('User Flow proper', () => {
         describe('getPageInfoForUserFlow', () => {
+            const prefix = 'prefix'
             it('should return page info', () => {
-                const result = common.getPageInfoForUserFlow(pages, userFlow.userflowv1, 'example2', 'example1', 0, 'example1')
+                const result = common.getPageInfoForUserFlow(prefix, pages, userFlow.userflowv1, 'example2', 'example1', 0, 'example1')
                 const output = outputs.getPageInfoForUserFlow
                 expect(result).to.not.be.empty
                 expect(result).to.eql(output)

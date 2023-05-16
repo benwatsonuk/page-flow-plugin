@@ -8,10 +8,10 @@ module.exports.getPageInfoForUserFlow = {
         }
     ],
     "journeyId": "example1",
-    "location": "0/example1/example2",
+    "location": "prefix/example1/example2",
     "navigation": {
         "next": {
-            "link": "/0/user-flow/example1/example1/example2",
+            "link": "/prefix/page-flow/example1/example1/example2?query=foo&query2=bar",
             "pageInfo": {
                 "description": "Page 2",
                 "id": "2",
@@ -26,7 +26,7 @@ module.exports.getPageInfoForUserFlow = {
             }
         },
         "prev": {
-            "link": "/0/user-flow/example1/example2/example1",
+            "link": "/prefix/page-flow/example1/example2/example1",
             "pageInfo": {
                 "description": "Page 1",
                 "id": "1",
