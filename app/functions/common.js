@@ -327,7 +327,7 @@ common.handleQueryString = function (query) {
             i++
         }
     }
-    return theQueryString
+    return encodeURI(theQueryString)
 }
 
 common.getPageInfoForUserFlow = function (prefix, pageFlow, userFlow, page, stage, version, journeyId, subStage = false, query = false) {
